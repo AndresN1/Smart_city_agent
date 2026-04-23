@@ -1,0 +1,49 @@
+{
+  "criteria": {
+    "tool_trajectory_avg_score": 0.8,
+    "rubric_based_final_response_quality_v1": {
+      "threshold": 0.8,
+      "judge_model_options": {
+        "judge_model": "openai/gpt-oss-120b",
+        "num_samples": 3
+      },
+      "rubrics": [
+        {
+          "rubricId": "json_validity",
+          "description": "The agent MUST invoke the tool 'export_pdf_and_json' at some point during the conversation, and the returned JSON object MUST be syntactically valid (i.e., it must contain the keys 'title', 'sections', 'total_words', 'num_sections', 'num_references', and 'pdf_path'). If the agent never produces a structured JSON output or the JSON is malformed, the score is 0.",
+          "rubricContent": {
+            "textProperty": "Verifies that the agent outputs a valid JSON via the export_pdf_and_json tool."
+          }
+        },
+        {
+          "rubricId": "mandatory_sections",
+          "description": "The final generated report MUST contain at least the following mandatory sections: 'Introducción' (or 'Introduction') and 'Conclusiones' (or 'Conclusions'). Both sections must be present and non-empty. If either section is missing or empty, the score is 0.",
+          "rubricContent": {
+            "textProperty": "Verifies that the generated report contains valid Introduction and Conclusion sections."
+          }
+        },
+        {
+          "rubricId": "min_references",
+          "description": "The final generated report MUST include at least 3 distinct bibliographic references (URLs). These references must be real, well-formed URLs pointing to external web resources. If fewer than 3 references are present or the references are clearly fabricated placeholder strings, the score is 0.",
+          "rubricContent": {
+            "textProperty": "Verifies that the response contains at least 3 valid bibliographic references."
+          }
+        },
+        {
+          "rubricId": "language_spanish",
+          "description": "The entire textual content of the agent's conversational responses and the generated report (introduction, implementation plan, budget, and conclusions) MUST be written entirely in Spanish. If any substantial portion of the output is in a language other than Spanish, the score is 0.",
+          "rubricContent": {
+            "textProperty": "Verifies that the entire conversation and generated PDF are written in Spanish."
+          }
+        },
+        {
+          "rubricId": "tool_chaining",
+          "description": "The agent MUST follow the correct sequential tool-chaining workflow: first 'search_google_web', then 'generate_implementation_plan', then 'estimate_budget', then 'search_google_web', and finally 'export_pdf_and_json'. All four tools must be called in this logical order during the execution phase. If the agent skips any tool or calls them in a clearly incorrect order, the score is 0.",
+          "rubricContent": {
+            "textProperty": "Verifies sequential tool calling: plan, budget, search, and finally export."
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "eval_set_id": "smartcity_agent_rubric_eval_v1",
+  "name": "Smart City Agent - Manual Rubric Evaluation",
+  "description": "Golden dataset to evaluate the Smart City generative agent using LLM-as-a-judge rubrics. Covers basic, technical, and edge-case scenarios.",
+  "eval_cases": [
+    {
+      "eval_id": "basic_test",
+      "conversation": [
+        {
+          "invocation_id": "turn_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Hola, quiero modernizar mi ciudad con tecnología inteligente. Me interesan los semáforos inteligentes con IA adaptativa y sensores de calidad del aire. Adelante, genera el informe con esas dos funciones."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "technical_test",
+      "conversation": [
+        {
+          "invocation_id": "turn_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Necesito un plan completo para implementar tres sistemas en mi Smart City: videovigilancia con reconocimiento facial mediante IA, sensores IoT para la gestión inteligente del riego en parques públicos, y un sistema de iluminación LED adaptativa que regule la intensidad según la presencia de peatones. Procede directamente a generar el informe técnico con esas tres funciones."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "eval_id": "edge_case_test",
+      "conversation": [
+        {
+          "invocation_id": "turn_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Quiero implementar únicamente un sistema de aparcamiento inteligente con sensores de ocupación en tiempo real conectados a una app móvil ciudadana. Solo esa función, nada más. Genera el informe completo por favor."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

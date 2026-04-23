@@ -1,0 +1,4 @@
+google-adk>=1.31.0
+litellm>=1.82.0
+fpdf2>=2.8.0
+duckduckgo-search>=8.0.0
